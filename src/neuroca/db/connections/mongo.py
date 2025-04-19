@@ -104,8 +104,7 @@ class MongoDBConnection:
         # Validate configuration
         self._validate_config()
         
-        logger.debug("MongoDB connection manager initialized with config: %s", 
-                    {k: v if k != 'password' else '******' for k, v in self.config.items()})
+        logger.debug("MongoDB connection manager initialized.")
 
     def _load_config_from_env(self) -> dict[str, Any]:
         """
