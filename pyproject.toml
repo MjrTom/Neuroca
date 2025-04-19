@@ -4,6 +4,15 @@
 # development tools, and build system settings for the NeuroCognitive Architecture.
 # It follows modern Python packaging standards using Poetry for dependency management.
 
+[tool.poetry]
+name = "neuroca"
+version = "0.1.0"
+description = "NeuroCognitive Architecture (NCA) for Large Language Models"
+authors = ["Justin Lietz <jlietz93@gmail.com>"]
+packages = [
+    {include = "neuroca", from = "src"}
+]
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
@@ -101,12 +110,6 @@ test = [
     "freezegun>=1.2.2",
 ]
 
-[tool.poetry]
-# Keep poetry-specific configurations like packages
-packages = [
-    {include = "neuroca", from = "src"}
-]
-
 [tool.black]
 line-length = 100
 target-version = ["py39", "py310", "py311"]
@@ -154,9 +157,7 @@ module = "tests.*"
 disallow_untyped_defs = false
 disallow_incomplete_defs = false
 
-# === CORRECTED RUFF CONFIGURATION (for v0.0.272) START ===
 [tool.ruff]
-# ALL settings go directly under [tool.ruff] for this version (e.g., v0.0.272)
 line-length = 100
 target-version = "py39"
 exclude = [
@@ -187,20 +188,7 @@ select = [
     "SIM",# flake8-simplify
 ]
 ignore = ["E203", "E501"]
-
-# per-file-ignores also goes directly under [tool.ruff]
-# Use the inline table syntax for the value
 per-file-ignores = { "tests/**/*.py" = ["S101"] }
-
-# Optional ignores commented out below:
-# per-file-ignores = {
-#    "tests/**/*.py" = ["S101", "S311"], # Example: Ignore assert and random in tests
-#    "**/__init__.py" = ["F401"]          # Example: Ignore unused imports in __init__
-# }
-
-# DO NOT include a [tool.ruff.lint] section for this version.
-# === CORRECTED RUFF CONFIGURATION (for v0.0.272) END ===
-
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -209,7 +197,7 @@ python_functions = "test_*"
 python_classes = "Test*"
 addopts = "--strict-markers --cov=neuroca --cov-report=term --cov-report=xml"
 norecursedirs = ["archive", ".venv", ".git", "__pycache__"]
-collect_ignore = ["archive/development_scripts/test_cli.py"] # Explicitly ignore archived test
+collect_ignore = ["archive/development_scripts/test_cli.py"]
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
     "integration: marks tests as integration tests",
