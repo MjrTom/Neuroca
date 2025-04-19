@@ -101,7 +101,7 @@ def setup_trusted_hosts(app: FastAPI) -> None:
             TrustedHostMiddleware,
             allowed_hosts=settings.TRUSTED_HOSTS,
         )
-        logger.debug("Trusted hosts middleware configured with hosts: %s", settings.TRUSTED_HOSTS)
+        logger.debug("Trusted hosts middleware configured.")
 
 
 def setup_compression(app: FastAPI) -> None:
